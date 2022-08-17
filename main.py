@@ -64,6 +64,9 @@ class Window(QMainWindow):
         weight_label.setText("Weight (in kg): ")
         self.weight_value = QLineEdit()
 
+        self.file_label = QLabel()
+        self.file_label.setText("File selected: " + str(self.excel_file))
+
         # Buttons
         self.clearButton = QPushButton()
         self.clearButton.setText("Clear")
@@ -75,16 +78,17 @@ class Window(QMainWindow):
         self.clearButton.clicked.connect(self.clearForm)
 
         # Formularlayout
-        self.grid_layout.addWidget(name_label, 0, 0)
-        self.grid_layout.addWidget(self.name_value, 0, 1)
-        self.grid_layout.addWidget(birthday_label, 1, 0)
-        self.grid_layout.addWidget(self.birthday_value, 1, 1)
-        self.grid_layout.addWidget(height_label, 2, 0)
-        self.grid_layout.addWidget(self.height_value, 2, 1)
-        self.grid_layout.addWidget(weight_label, 3, 0)
-        self.grid_layout.addWidget(self.weight_value, 3, 1)
-        self.grid_layout.addWidget(self.clearButton, 4, 0)
-        self.grid_layout.addWidget(self.addButton, 4, 1)
+        self.grid_layout.addWidget(self.file_label, 0, 0, 1, 2)
+        self.grid_layout.addWidget(name_label, 1, 0)
+        self.grid_layout.addWidget(self.name_value, 1, 1)
+        self.grid_layout.addWidget(birthday_label, 2, 0)
+        self.grid_layout.addWidget(self.birthday_value, 2, 1)
+        self.grid_layout.addWidget(height_label, 3, 0)
+        self.grid_layout.addWidget(self.height_value, 3, 1)
+        self.grid_layout.addWidget(weight_label, 4, 0)
+        self.grid_layout.addWidget(self.weight_value, 4, 1)
+        self.grid_layout.addWidget(self.clearButton, 5, 0)
+        self.grid_layout.addWidget(self.addButton, 5, 1)
 
         self.setCentralWidget(self.form_widget)
         self.grid_layout.setAlignment(
@@ -97,6 +101,8 @@ class Window(QMainWindow):
         )[0]
         with open(os.getcwd() + os.path.sep + "config.ini", "w") as config_file:
             config_file.write(self.excel_file)
+
+        self.file_label.setText("File selected: " + str(self.excel_file))
 
     def _check_for_config(self):
         if "config.ini" in os.listdir(os.getcwd()):
