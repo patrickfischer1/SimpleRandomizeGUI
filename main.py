@@ -145,7 +145,7 @@ class Window(QMainWindow):
         msg = QMessageBox()
         msg.setWindowTitle("Adding Patient")
         msg.setText(
-            "Are you sure you want to add this data as the %d. patient too the study?"
+            "Are you sure you want to add this data as the %d. patient to the study?"
             % number_of_patients
         )
         msg.setStandardButtons(
